@@ -1,0 +1,7 @@
+{
+    "admin": [
+        "init",
+        "admin/admin",
+        "admin/section"
+    ]
+}

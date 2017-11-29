@@ -1,0 +1,22 @@
+{
+  "name": "noroman/phpack",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Roman Novikov",
+      "email": "service.for.roman@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "tedivm/jshrink": "^1.2",
+    "leafo/scssphp": "^0.7.1",
+    "tholu/php-packer": "^0.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "PHPack\\": "src/"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "common": [
+    "init",
+    "library",
+    "methods/timer"
+  ],
+  "admin": [
+    "init",
+    "admin/admin",
+    "admin/section"
+  ],
+  "main": [
+    "main"
+  ]
+}
