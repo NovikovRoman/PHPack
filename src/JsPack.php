@@ -87,8 +87,9 @@ class JsPack extends AbstractPack implements InterfacePack
             if (!file_exists($pathfile)) {
                 throw new \Exception('Could not find file for bundle (' . $file . ')');
             }
-            $content .= Minifier::minify(file_get_contents($pathfile), $options);
+            $content .= file_get_contents($pathfile);
         }
+        $content = Minifier::minify($content, $options);
         if (!empty($this->obfuscation)) {
             $packer = new Packer($content, 'Normal');
             $content = $packer->pack();

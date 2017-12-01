@@ -7,8 +7,6 @@ use Leafo\ScssPhp\Compiler;
 class CssPack extends AbstractPack implements InterfacePack
 {
     const SOURCE_EXTENSION = 'scss';
-    /** @var Compiler */
-    private $scss;
 
     /**
      * CssPack constructor.
@@ -69,17 +67,18 @@ class CssPack extends AbstractPack implements InterfacePack
         if ($this->isProduction && !$this->force && $this->existsBundle($name)) {
             return $getContent ? file_get_contents($pathFileBundle) : $this->getWebPath($name);
         }
-        $this->scss = new Compiler();
-        $this->scss->setFormatter($class);
         $content = '';
         foreach ($files as $file) {
             $pathfile = $this->srcDir . $file . '.' . self::SOURCE_EXTENSION;
             if (!file_exists($pathfile)) {
                 throw new \Exception('Could not find file for bundle (' . $file . ')');
             }
-            $this->scss->setImportPaths($this->srcDir);
-            $content .= $this->scss->compile(file_get_contents($pathfile));
+            $content .= file_get_contents($pathfile);
         }
+        $scss = new Compiler();
+        $scss->setFormatter($class);
+        $scss->setImportPaths($this->srcDir);
+        $content = $scss->compile($content);
         file_put_contents($pathFileBundle, $content);
         return $getContent ? $content : $this->getWebPath($name);
     }
